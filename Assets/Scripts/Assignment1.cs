@@ -33,6 +33,9 @@ public class Assignment1 : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Generates the balls of the program. Amount is determined by provided number
+    /// </summary>
     private void GenerateBalls()
     {
         for (int i = 0; i < NUM_BALLS; i++)
