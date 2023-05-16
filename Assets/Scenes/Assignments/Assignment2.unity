@@ -215,7 +215,7 @@ Transform:
   m_GameObject: {fileID: 300823706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.11, y: 2.5, z: 0}
-  m_LocalScale: {x: 15, y: 5, z: 9}
+  m_LocalScale: {x: 18, y: 5, z: 9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -661,7 +661,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350910185}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40d5eee995add80408f94553e843fdd2, type: 3}
   m_Name: 
@@ -676,15 +676,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350910185}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ac7195b5fd94d14fbead400cdbc4e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  acceleration: 0
-  isStop: 0
-  redMaterial: {fileID: 0}
+  isStopped: 0
+  redMaterial: {fileID: 2100000, guid: 34e13c8fb9b6d474d9b3fb93057324ab, type: 2}
+  greenMaterial: {fileID: 2100000, guid: 1e69c324aeee5464288db943c902408b, type: 2}
+  SendToObject: {fileID: 1905696159}
+  targetA: {fileID: 1904705609}
+  targetB: {fileID: 736913100}
+  timer: 0
 --- !u!1 &1454307071
 GameObject:
   m_ObjectHideFlags: 0
