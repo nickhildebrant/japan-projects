@@ -1,25 +1,31 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Train : MonoBehaviour
 {
-    public float speed = 10f;
-    public bool isStopped = false;
+    private float speed = 10f;
+    private bool isStopped = false;
     public Material redMaterial, greenMaterial;
 
     public GameObject SendToObject;
 
-    public Transform targetA, targetB;
+    private Transform targetA, targetB, prevStop;
 
     private float acceleration = 0.0f;
-    public float timer = 0.0f;
+    private float timer = 0.0f;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    public Transform[] targets;
+    private bool nextStop = true;
+    private int i = 0;
+
+    private void Start()
     {
-        
+        prevStop = targets[i];
+        targetA = targets[i];
+        targetB = targets[i + 1];
     }
 
     // Update is called once per frame
@@ -45,6 +51,29 @@ public class Train : MonoBehaviour
 
         transform.position += speed * directionVector * Time.deltaTime;
 
+        float distance = Vector3.Distance(transform.position, targetB.position);
+        if (distance <= 0.5f && nextStop)
+        {
+            nextStop = false;
+
+            if (i < targets.Length - 2)
+            {
+                prevStop = targets[i++];
+                targetA = targets[i];
+                targetB = targets[i + 1];
+            }
+            else
+            {
+                i = 0;
+                prevStop = targets[i];
+                targetA = targets[i];
+                targetB = targets[i + 1];
+                transform.position = targetA.position;
+            }
+        }
+
+        if(Vector3.Distance(transform.position, prevStop.position) > 0.5f) { nextStop = true; }
+
         if (speed <= 0)
         {
             isStopped = true;
@@ -53,13 +82,19 @@ public class Train : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        acceleration = -0.1f;
-        SendToObject.GetComponent<Renderer>().material = redMaterial;
+        if(other.gameObject.tag == "Station")
+        {
+            acceleration = -0.1f;
+            SendToObject.GetComponent<Renderer>().material = redMaterial;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        SendToObject.GetComponent<Renderer>().material = greenMaterial;
-        acceleration = 0;
+        if(other.gameObject.tag == "Station")
+        {
+            SendToObject.GetComponent<Renderer>().material = greenMaterial;
+            acceleration = 0;
+        }
     }
 }
