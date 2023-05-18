@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
@@ -20,8 +21,11 @@ public class CarView : MonoBehaviour
     void Update()
     {
         // Update
-        if (isClose || isStop) gameObject.transform.parent.GetComponent<CarMove>().speed = 0;
-        gameObject.transform.parent.GetComponent<Renderer>().material = redMaterial;
+        if (isClose && isStop)
+        {
+            gameObject.transform.parent.GetComponent<CarMove>().speed = 0;
+            gameObject.transform.parent.GetComponent<Renderer>().material = redMaterial;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,9 +37,21 @@ public class CarView : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // Trigger Exit
-        if (other.tag == "Car") isClose = false;
+        if (other.tag == "Car")
+        {
+            isClose = false;
+            isStop = false;
 
-        gameObject.transform.parent.GetComponent<CarMove>().speed = Random.Range(2, 5);
-        gameObject.transform.parent.GetComponent<Renderer>().material = greenMaterial;
+            gameObject.transform.parent.GetComponent<CarMove>().speed = Random.Range(2, 5);
+            gameObject.transform.parent.GetComponent<Renderer>().material = greenMaterial;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Car")
+        {
+            isStop = true;
+        }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TrafficLight : MonoBehaviour
 {
     private float timer = 0.0f;
-    private bool isStopped = false;
+    public bool isStopped = false;
 
     public Material greenMaterial, redMaterial;
     public GameObject trafficLight;
