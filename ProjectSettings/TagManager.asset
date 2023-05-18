@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ball
   - Station
+  - Car
+  - StreetNode
   layers:
   - Default
   - TransparentFX
