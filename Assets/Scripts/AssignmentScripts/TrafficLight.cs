@@ -17,7 +17,7 @@ public class TrafficLight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timerText = GameObject.Find("Time Counter").GetComponent<Text>();
+        if(GameObject.Find("Time Counter")) timerText = GameObject.Find("Time Counter").GetComponent<Text>();
     }
 
     // Update is called once per frame
