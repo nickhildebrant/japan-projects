@@ -19,11 +19,14 @@ public class Exercise3a : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, agent.destination) < 1.1f) Destroy(gameObject);
+        if (Vector3.Distance(transform.position, agent.destination) < 1.1f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        agent.Stop();
+        agent.isStopped = true;
     }
 }

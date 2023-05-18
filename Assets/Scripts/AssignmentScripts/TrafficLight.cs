@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrafficLight : MonoBehaviour
 {
@@ -10,9 +12,12 @@ public class TrafficLight : MonoBehaviour
     public Material greenMaterial, redMaterial;
     public GameObject trafficLight;
 
+    private Text timerText;
+
     // Start is called before the first frame update
     void Start()
     {
+        timerText = GameObject.Find("Time Counter").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -27,6 +32,8 @@ public class TrafficLight : MonoBehaviour
             timer = 0;
             isStopped = !isStopped;
         }
+
+        if (timerText) timerText.text = "Time: " + (int)Time.realtimeSinceStartup;
     }
 
     public bool GetLightColor() { return isStopped; }
