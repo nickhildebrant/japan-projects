@@ -31,25 +31,25 @@ public class CarView : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Trigger Enter
-        if ((other.tag == "East" || other.tag == "South" || other.tag == "North" || other.tag == "West") && other.GetComponent<Renderer>().material != orangeMaterial) isClose = true;
+        if ((other.tag == "East" || other.tag == "South" || other.tag == "North" || other.tag == "West") && other.GetComponent<Renderer>().material != orangeMaterial || other.tag == "Customer") isClose = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         // Trigger Exit
-        if (other.tag == "East" || other.tag == "South" || other.tag == "North" || other.tag == "West" && other.GetComponent<Renderer>().material != orangeMaterial)
+        if (other.tag == "East" || other.tag == "South" || other.tag == "North" || other.tag == "West" && other.GetComponent<Renderer>().material != orangeMaterial || other.tag == "Customer")
         {
             isClose = false;
             isStop = false;
 
-            gameObject.transform.parent.GetComponent<CarMove>().speed = Random.Range(2, 5);
+            gameObject.transform.parent.GetComponent<CarMove>().speed = Random.Range(4f, 10f);
             gameObject.transform.parent.GetComponent<Renderer>().material = greenMaterial;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.tag == "East" || other.tag == "South" || other.tag == "North" || other.tag == "West" && other.GetComponent<Renderer>().material != orangeMaterial)
+        if (other.tag == "East" || other.tag == "South" || other.tag == "North" || other.tag == "West" && other.GetComponent<Renderer>().material != orangeMaterial || other.tag == "Customer")
         {
             isStop = true;
         }

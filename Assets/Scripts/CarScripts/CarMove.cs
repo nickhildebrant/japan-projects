@@ -13,6 +13,8 @@ public class CarMove : MonoBehaviour
 
     public Material redMaterial, greenMaterial;
 
+    public GameObject DropOffLocation, DropOffPrefab;
+
     private Vector3 tempDirection;
 
     // Start is called before the first frame update
@@ -40,7 +42,15 @@ public class CarMove : MonoBehaviour
         if ((tag == "East" || tag == "South" || tag == "North" || tag == "West") && other.tag == "StreetNode")
         {
             var nextStops = other.GetComponent<StreetNode>().nextNodes;
-            if (nextStops.Length == 0) Destroy(gameObject);
+            if (nextStops.Length == 0)
+            {
+                if(DropOffPrefab && DropOffLocation)
+                {
+                    GameObject.Instantiate(DropOffPrefab, DropOffLocation.transform.position, Quaternion.identity);
+                }
+
+                Destroy(gameObject);
+            }
             else
             {
                 int randomID = CheckSameOrigin(other, nextStops.Length);

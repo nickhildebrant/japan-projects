@@ -14,6 +14,8 @@ public class TrafficLight : MonoBehaviour
 
     private Text timerText;
 
+    public GameObject pedestrianBlocker;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +27,18 @@ public class TrafficLight : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer > 5.0f)
+        if(timer > 10.0f)
         {
             trafficLight.GetComponent<Renderer>().enabled = true; //show up
             trafficLight.GetComponent<Renderer>().material = isStopped ? greenMaterial : redMaterial;
+
+            if(pedestrianBlocker)
+            {
+                //pedestrianBlocker.GetComponent<BoxCollider>().isTrigger = !isStopped;
+                pedestrianBlocker.GetComponent<Renderer>().enabled = !isStopped;
+            }
+
+
             timer = 0;
             isStopped = !isStopped;
         }

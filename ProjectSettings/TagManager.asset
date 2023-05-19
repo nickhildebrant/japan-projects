@@ -14,6 +14,7 @@ TagManager:
   - West
   - Customer
   - Seat
+  - Crosswalk
   layers:
   - Default
   - TransparentFX

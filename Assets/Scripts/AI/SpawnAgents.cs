@@ -10,6 +10,8 @@ public class SpawnAgents : MonoBehaviour
     public float timeInterval = 5.0f;
     public GameObject agentPrefab;
 
+    public GameObject DropOffLocation, DropOffPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,12 @@ public class SpawnAgents : MonoBehaviour
             {
                 GameObject newAgent = GameObject.Instantiate(agentPrefab, transform.position, Quaternion.identity);
                 newAgent.tag = tag;
+
+                if(DropOffLocation && DropOffPrefab)
+                {
+                    newAgent.GetComponent<CarMove>().DropOffPrefab = DropOffPrefab;
+                    newAgent.GetComponent<CarMove>().DropOffLocation = DropOffLocation;
+                }
             }
         }
     }
