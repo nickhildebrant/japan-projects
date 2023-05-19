@@ -12,6 +12,8 @@ TagManager:
   - South
   - East
   - West
+  - Customer
+  - Seat
   layers:
   - Default
   - TransparentFX
