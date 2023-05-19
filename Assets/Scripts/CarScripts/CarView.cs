@@ -9,7 +9,7 @@ public class CarView : MonoBehaviour
     private bool isClose;
     private bool isStop;
 
-    public Material greenMaterial, redMaterial;
+    public Material greenMaterial, redMaterial, orangeMaterial;
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +31,13 @@ public class CarView : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Trigger Enter
-        if (other.tag == "Car") isClose = true;
+        if ((other.tag == "East" || other.tag == "South" || other.tag == "North" || other.tag == "West") && other.GetComponent<Renderer>().material != orangeMaterial) isClose = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         // Trigger Exit
-        if (other.tag == "Car")
+        if (other.tag == "East" || other.tag == "South" || other.tag == "North" || other.tag == "West" && other.GetComponent<Renderer>().material != orangeMaterial)
         {
             isClose = false;
             isStop = false;
@@ -49,7 +49,7 @@ public class CarView : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Car")
+        if (other.tag == "East" || other.tag == "South" || other.tag == "North" || other.tag == "West" && other.GetComponent<Renderer>().material != orangeMaterial)
         {
             isStop = true;
         }

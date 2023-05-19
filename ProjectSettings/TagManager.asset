@@ -8,6 +8,10 @@ TagManager:
   - Station
   - Car
   - StreetNode
+  - North
+  - South
+  - East
+  - West
   layers:
   - Default
   - TransparentFX

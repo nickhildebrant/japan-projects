@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8282928816541358868}
   m_Layer: 0
   m_Name: View
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3750531092131751205}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.75}
-  m_LocalScale: {x: 1, y: 1, z: 0.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0.613}
+  m_LocalScale: {x: 1, y: 1, z: 0.14901684}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5445256416467487350}
@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   greenMaterial: {fileID: 2100000, guid: 1e69c324aeee5464288db943c902408b, type: 2}
   redMaterial: {fileID: 2100000, guid: 34e13c8fb9b6d474d9b3fb93057324ab, type: 2}
+  orangeMaterial: {fileID: 2100000, guid: 045ba01012736844e9a44869182a61af, type: 2}
 --- !u!1 &5445256416467487346
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,7 +226,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  maxSpeed: 5
+  maxSpeed: 10
+  redMaterial: {fileID: 2100000, guid: 34e13c8fb9b6d474d9b3fb93057324ab, type: 2}
+  greenMaterial: {fileID: 2100000, guid: 1e69c324aeee5464288db943c902408b, type: 2}
 --- !u!54 &4682922710184585429
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -21,10 +21,14 @@ public class SpawnAgents : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer > 3.0f)
+        if(timer > 5.0f)
         {
             timer = 0.0f;
-            for(int i = 0; i < numberOfAgents; i++) GameObject.Instantiate(agentPrefab, transform.position, Quaternion.identity);
+            for (int i = 0; i < numberOfAgents; i++)
+            {
+                GameObject newAgent = GameObject.Instantiate(agentPrefab, transform.position, Quaternion.identity);
+                newAgent.tag = tag;
+            }
         }
     }
 }

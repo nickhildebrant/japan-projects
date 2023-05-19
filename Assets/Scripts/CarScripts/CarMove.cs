@@ -9,17 +9,17 @@ using UnityEngine.AI;
 public class CarMove : MonoBehaviour
 {
     public float speed; // Random from 2-Max
-    public float maxSpeed = 5.0f;
+    public float maxSpeed = 10.0f;
 
-    private Vector3 origin;
+    public Material redMaterial, greenMaterial;
+
     private Vector3 tempDirection;
 
     // Start is called before the first frame update
     void Start()
     {
-        origin = transform.position;
-        speed = Random.Range(2, maxSpeed);
-        tempDirection = Vector3.Normalize(GameObject.Find("PrefabStreetNodeCenter").transform.position - transform.position);
+        speed = Random.Range(4, maxSpeed);
+        tempDirection = Vector3.Normalize(GameObject.Find("PrefabStreetNodeCenter" + tag).transform.position - transform.position);
         transform.rotation = Quaternion.LookRotation(tempDirection);
 
         GetComponent<Rigidbody>().velocity = tempDirection * speed;
@@ -29,20 +29,21 @@ public class CarMove : MonoBehaviour
     private void Update()
     {
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
+
+        GetComponent<Renderer>().material = speed == 0 ? redMaterial : greenMaterial;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<TrafficLight>() && tag == "Car") speed = 0;
+        if (other.GetComponent<TrafficLight>() && (tag == "East" || tag == "South" || tag == "North" || tag == "West")) speed = 0;
 
-        if (tag == "Car" && other.tag == "StreetNode")
+        if ((tag == "East" || tag == "South" || tag == "North" || tag == "West") && other.tag == "StreetNode")
         {
             var nextStops = other.GetComponent<StreetNode>().nextNodes;
             if (nextStops.Length == 0) Destroy(gameObject);
             else
             {
-                int randomID = Random.Range(0, nextStops.Length);
-                while (other.GetComponent<StreetNode>().nextNodes[randomID].position == origin) { randomID = Random.Range(0, nextStops.Length); }
+                int randomID = CheckSameOrigin(other, nextStops.Length);
                 tempDirection = other.GetComponent<StreetNode>().directions[randomID];
                 transform.rotation = Quaternion.LookRotation(tempDirection);
                 GetComponent<Rigidbody>().velocity = tempDirection * speed;
@@ -59,14 +60,29 @@ public class CarMove : MonoBehaviour
         //    other.transform.position += other.transform.forward * other.GetComponent<CarMove>().speed;
         //}
 
-        if (tag == "Car" && other.GetComponent<TrafficLight>() && !other.GetComponent<TrafficLight>().GetLightColor()) speed = Random.Range(2f, maxSpeed);
+        if ((tag == "East" || tag == "South" || tag == "North" || tag == "West") && other.GetComponent<TrafficLight>() && !other.GetComponent<TrafficLight>().GetLightColor())
+        {
+            speed = Random.Range(4f, maxSpeed);
+        }
     }
 
-    private void OnTriggerExit(Collider other)
+    private int CheckSameOrigin(Collider other, int arrayLength)
     {
-        if(other.tag == "Car")
+        int randomID = Random.Range(0, arrayLength);
+
+        while(true)
         {
-            //GetComponent<Rigidbody>().velocity = tempDirection * speed;
+            string checkName = "StreetNode" + tag;
+            if (other.GetComponent<StreetNode>().nextNodes[randomID].name == checkName || other.GetComponent<StreetNode>().nextNodes[randomID].name == "PrefabStreetNodeCenter"+tag)
+            {
+                randomID = Random.Range(0, arrayLength);
+            }
+            else
+            {
+                return randomID;
+            }
         }
+
+        return 0;
     }
 }
