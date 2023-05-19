@@ -82,7 +82,5 @@ public class CarMove : MonoBehaviour
                 return randomID;
             }
         }
-
-        return 0;
     }
 }
