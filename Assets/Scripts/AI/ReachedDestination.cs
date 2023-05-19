@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class ReachedDestination : MonoBehaviour
 {
+
+    private float speed;
     // Start is called before the first frame update
     void Start()
     {
-        
+        speed = GetComponent<NavMeshAgent>().speed;
     }
 
     // Update is called once per frame
@@ -41,6 +44,18 @@ public class ReachedDestination : MonoBehaviour
             {
                 GetComponent<NavMeshAgent>().isStopped = false;
             }
+            else
+            {
+                GetComponent<NavMeshAgent>().speed = GetComponent<NavMeshAgent>().speed + 5;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Crosswalk")
+        {
+            GetComponent<NavMeshAgent>().speed = speed;
         }
     }
 }

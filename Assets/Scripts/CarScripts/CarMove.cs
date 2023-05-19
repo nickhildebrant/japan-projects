@@ -39,14 +39,14 @@ public class CarMove : MonoBehaviour
     {
         if (other.GetComponent<TrafficLight>() && (tag == "East" || tag == "South" || tag == "North" || tag == "West")) speed = 0;
 
-        if ((tag == "East" || tag == "South" || tag == "North" || tag == "West") && other.tag == "StreetNode")
+        if ((tag == "East" || tag == "South" || tag == "North" || tag == "West" || tag == "Respawn") && other.tag == "StreetNode")
         {
             var nextStops = other.GetComponent<StreetNode>().nextNodes;
             if (nextStops.Length == 0)
             {
                 if(DropOffPrefab && DropOffLocation)
                 {
-                    GameObject.Instantiate(DropOffPrefab, DropOffLocation.transform.position, Quaternion.identity);
+                    for(int i = 0; i < 3; i++) GameObject.Instantiate(DropOffPrefab, DropOffLocation.transform.position, Quaternion.identity);
                 }
 
                 Destroy(gameObject);

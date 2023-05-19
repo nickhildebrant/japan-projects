@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 1
+    agentRadius: 1.5
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.6
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.33333334
+    cellSize: 0.5
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -2030,11 +2030,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3366046550101410457, guid: 3f35e73f58a6c6e41bbf4baea6985e1c, type: 3}
       propertyPath: m_Name
-      value: PrefabStreetNodeCenterUntagged
+      value: PrefabStreetNodeCenterRespawn
       objectReference: {fileID: 0}
     - target: {fileID: 3366046550101410457, guid: 3f35e73f58a6c6e41bbf4baea6985e1c, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: StreetNode
       objectReference: {fileID: 0}
     - target: {fileID: 5105888542224831577, guid: 3f35e73f58a6c6e41bbf4baea6985e1c, type: 3}
       propertyPath: nextNodes.Array.size
@@ -2266,7 +2266,7 @@ GameObject:
   - component: {fileID: 1134436320}
   m_Layer: 0
   m_Name: CarSpawnUntagged
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2284,7 +2284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfAgents: 1
-  timeInterval: 20
+  timeInterval: 15
   agentPrefab: {fileID: 5445256416467487346, guid: 779f2ec2419fe5249a98413f2ae28b22, type: 3}
   DropOffLocation: {fileID: 2084274269}
   DropOffPrefab: {fileID: 4612741778542488959, guid: 6460d499a6a91b047b2161d75985fd90, type: 3}
@@ -2466,7 +2466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfAgents: 1
-  timeInterval: 5
+  timeInterval: 10
   agentPrefab: {fileID: 5445256416467487346, guid: 779f2ec2419fe5249a98413f2ae28b22, type: 3}
   DropOffLocation: {fileID: 0}
   DropOffPrefab: {fileID: 0}
@@ -2899,8 +2899,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259397470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.25, y: 0, z: -9.75}
-  m_LocalScale: {x: 15.230845, y: 1, z: 9.86}
+  m_LocalPosition: {x: 10.08, y: 0, z: -9.75}
+  m_LocalScale: {x: 11.457556, y: 1, z: 9.86}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 981910987}
@@ -3434,8 +3434,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349571923}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.25, y: 0, z: 10.75}
-  m_LocalScale: {x: 15.230845, y: 1, z: 9.86}
+  m_LocalPosition: {x: 10.08, y: 0, z: 10.75}
+  m_LocalScale: {x: 11.457556, y: 1, z: 9.86}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 981910987}
@@ -3986,8 +3986,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507534980}
   m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 16.295439, y: 1, z: 9.86}
+  m_LocalPosition: {x: 0, y: 0, z: 0.48}
+  m_LocalScale: {x: 10.346463, y: 1, z: 9.86}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 981910987}
@@ -4503,8 +4503,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699700485}
   m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: 20.75, y: 0, z: 0}
-  m_LocalScale: {x: 16.295439, y: 1, z: 9.86}
+  m_LocalPosition: {x: 20.75, y: 0, z: 0.48}
+  m_LocalScale: {x: 10.346463, y: 1, z: 9.86}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 981910987}
@@ -5090,7 +5090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfAgents: 1
-  timeInterval: 5
+  timeInterval: 7
   agentPrefab: {fileID: 5445256416467487346, guid: 779f2ec2419fe5249a98413f2ae28b22, type: 3}
   DropOffLocation: {fileID: 0}
   DropOffPrefab: {fileID: 0}
@@ -5186,7 +5186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfAgents: 1
-  timeInterval: 5
+  timeInterval: 8
   agentPrefab: {fileID: 5445256416467487346, guid: 779f2ec2419fe5249a98413f2ae28b22, type: 3}
   DropOffLocation: {fileID: 0}
   DropOffPrefab: {fileID: 0}
@@ -5343,7 +5343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084274269}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.70287, y: -7.602644, z: 19.20163}
+  m_LocalPosition: {x: -42.5, y: 0, z: 7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
