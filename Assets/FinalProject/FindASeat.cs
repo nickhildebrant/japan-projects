@@ -17,7 +17,7 @@ public class FindASeat : MonoBehaviour
 
         agent = GetComponent<NavMeshAgent>();
         var possibleSeats = GameObject.FindGameObjectsWithTag("Seat");
-        int randomSeat = Random.Range(0, possibleSeats.Length - 1);
+        int randomSeat = Random.Range(0, possibleSeats.Length);
         agent.destination = possibleSeats[randomSeat].transform.position;
         agent.isStopped = false;
     }
@@ -25,6 +25,6 @@ public class FindASeat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.speed = walkingSpeed * dayNightManager.GetComponent<DaylightCycle>().simulationSpeed;
+        agent.speed = walkingSpeed;
     }
 }

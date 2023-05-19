@@ -14,8 +14,6 @@ public class DaylightCycle : MonoBehaviour
     private int minutes = 12, seconds = 0;
     private float timer = 0.0f;
 
-    public int simulationSpeed = 1;
-
     public Slider simulationSlider;
 
     // Start is called before the first frame update
@@ -27,20 +25,20 @@ public class DaylightCycle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        simulationSpeed = (int)simulationSlider.value;
+        Time.timeScale = (int)simulationSlider.value;
 
-        timer += Time.deltaTime * simulationSpeed * 4;
+        timer += Time.deltaTime * 4;
         seconds = (int)timer % 60;
         minutes = (int)timer / 60 % 12 + 12;
         minutes = minutes > 12 ? minutes - 12 : minutes;
 
-        transform.Rotate(new Vector3(Time.deltaTime * simulationSpeed, 0, 0));
+        transform.Rotate(new Vector3(Time.deltaTime, 0, 0));
 
         // Updating the clock if the UI exists
         if(textUI)
         {
             textUI.GetComponent<Text>().text = "Current Time: " + minutes + ":" + seconds.ToString("00") + "\n"
-                + "Simulation Speed: " + simulationSpeed;
+                + "Simulation Speed: " + Time.timeScale;
         }
     }
 }
