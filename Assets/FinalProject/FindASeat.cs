@@ -27,4 +27,20 @@ public class FindASeat : MonoBehaviour
     {
         agent.speed = walkingSpeed;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Seat")
+        {
+            agent.isStopped = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Seat")
+        {
+            
+        }
+    }
 }
