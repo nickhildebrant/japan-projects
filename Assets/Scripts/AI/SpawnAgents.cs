@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnAgents : MonoBehaviour
 {
@@ -26,14 +27,17 @@ public class SpawnAgents : MonoBehaviour
         if (timer > Random.Range(timeInterval - 2, timeInterval + 2))
         {
             timer = 0.0f;
+
+            var possibleSeats = GameObject.FindGameObjectsWithTag("Seat");
+            int randomSeat = Random.Range(0, possibleSeats.Length);
             for (int i = 0; i < numberOfAgents; i++)
             {
                 GameObject newAgent = GameObject.Instantiate(agentPrefab, transform.position, Quaternion.identity);
                 newAgent.tag = tag;
-
-                if(newAgent.GetComponent<FindASeat>())
+                if (newAgent.GetComponent<FindASeat>())
                 {
                     newAgent.GetComponent<FindASeat>().partySize = numberOfAgents;
+                    newAgent.GetComponent<NavMeshAgent>().destination = possibleSeats[randomSeat].transform.position;
                 }
 
                 if(DropOffLocation && DropOffPrefab)

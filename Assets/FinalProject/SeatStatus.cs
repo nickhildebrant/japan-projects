@@ -20,7 +20,7 @@ public class SeatStatus : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("Seat detected trigger enter");
+        //print("Seat detected trigger enter");
 
         if(other.tag == "Customer")
         {
@@ -30,7 +30,7 @@ public class SeatStatus : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        print("Seat detected trigger exit");
+        //print("Seat detected trigger exit");
 
         if (other.tag == "Customer")
         {

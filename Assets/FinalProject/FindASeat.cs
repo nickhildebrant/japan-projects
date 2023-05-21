@@ -17,9 +17,6 @@ public class FindASeat : MonoBehaviour
         dayNightManager = GameObject.Find("Directional Light");
 
         agent = GetComponent<NavMeshAgent>();
-        var possibleSeats = GameObject.FindGameObjectsWithTag("Seat");
-        int randomSeat = Random.Range(0, possibleSeats.Length);
-        agent.destination = possibleSeats[randomSeat].transform.position;
         agent.isStopped = false;
     }
 

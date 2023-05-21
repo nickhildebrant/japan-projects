@@ -41,4 +41,9 @@ public class DaylightCycle : MonoBehaviour
                 + "Simulation Speed: " + Time.timeScale;
         }
     }
+
+    public int GetTime()
+    {
+        return minutes * 60 + seconds;
+    }
 }
