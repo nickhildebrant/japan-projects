@@ -31,6 +31,11 @@ public class SpawnAgents : MonoBehaviour
                 GameObject newAgent = GameObject.Instantiate(agentPrefab, transform.position, Quaternion.identity);
                 newAgent.tag = tag;
 
+                if(newAgent.GetComponent<FindASeat>())
+                {
+                    newAgent.GetComponent<FindASeat>().partySize = numberOfAgents;
+                }
+
                 if(DropOffLocation && DropOffPrefab)
                 {
                     newAgent.GetComponent<CarMove>().DropOffPrefab = DropOffPrefab;

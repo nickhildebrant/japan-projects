@@ -20,6 +20,8 @@ public class SeatStatus : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print("Seat detected trigger enter");
+
         if(other.tag == "Customer")
         {
             GetComponent<Renderer>().material = redMaterial;
@@ -28,7 +30,9 @@ public class SeatStatus : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Customer")
+        print("Seat detected trigger exit");
+
+        if (other.tag == "Customer")
         {
             GetComponent<Renderer>().material = greenMaterial;
         }

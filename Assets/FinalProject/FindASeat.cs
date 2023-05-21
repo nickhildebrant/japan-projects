@@ -8,7 +8,8 @@ public class FindASeat : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject dayNightManager;
 
-    public float walkingSpeed = 0.1f;
+    public float walkingSpeed = 1.0f;
+    public float partySize = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +33,7 @@ public class FindASeat : MonoBehaviour
     {
         if(other.tag == "Seat")
         {
-            agent.isStopped = true;
+            GameObject.Destroy(gameObject);
         }
     }
 
