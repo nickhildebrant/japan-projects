@@ -28,12 +28,12 @@ public class SpawnAgents : MonoBehaviour
         {
             timer = 0.0f;
 
-            var possibleSeats = GameObject.FindGameObjectsWithTag("Seat");
+            var possibleSeats = GameObject.FindGameObjectsWithTag("Entrance");
             int randomSeat = Random.Range(0, possibleSeats.Length);
             for (int i = 0; i < numberOfAgents; i++)
             {
                 GameObject newAgent = GameObject.Instantiate(agentPrefab, transform.position, Quaternion.identity);
-                newAgent.tag = tag;
+                if(tag != "Finish") newAgent.tag = tag;
                 if (newAgent.GetComponent<FindASeat>())
                 {
                     newAgent.GetComponent<FindASeat>().partySize = numberOfAgents;

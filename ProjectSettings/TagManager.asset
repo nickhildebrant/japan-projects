@@ -15,6 +15,7 @@ TagManager:
   - Customer
   - Seat
   - Crosswalk
+  - Entrance
   layers:
   - Default
   - TransparentFX
