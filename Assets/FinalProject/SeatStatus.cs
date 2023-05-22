@@ -37,4 +37,9 @@ public class SeatStatus : MonoBehaviour
             GetComponent<Renderer>().material = greenMaterial;
         }
     }
+
+    public bool IsOpen()
+    {
+        return GetComponent<Renderer>().material == greenMaterial;
+    }
 }

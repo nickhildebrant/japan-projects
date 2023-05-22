@@ -38,6 +38,7 @@ public class SpawnAgents : MonoBehaviour
                 {
                     newAgent.GetComponent<FindASeat>().partySize = numberOfAgents;
                     newAgent.GetComponent<NavMeshAgent>().destination = possibleSeats[randomSeat].transform.position;
+                    newAgent.GetComponent<NavMeshAgent>().speed = 5.0f;
                 }
 
                 if(DropOffLocation && DropOffPrefab)

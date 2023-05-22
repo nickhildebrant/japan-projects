@@ -8,8 +8,8 @@ public class FindASeat : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject dayNightManager;
 
-    public float walkingSpeed = 1.0f;
-    public float partySize = 1.0f;
+    public float walkingSpeed = 5.0f;
+    public int partySize = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class FindASeat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.speed = walkingSpeed;
+        //agent.speed = walkingSpeed;
     }
 
     private void OnTriggerEnter(Collider other)
