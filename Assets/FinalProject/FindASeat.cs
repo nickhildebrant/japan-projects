@@ -44,9 +44,9 @@ public class FindASeat : MonoBehaviour
             timer = 0;
         }
 
-        if (Vector3.Distance(transform.position, agent.destination) <= (agent.radius * 3) && foundSeat)
+        if (finalDestination && Vector3.Distance(finalDestination.transform.position, transform.position) <= (agent.radius * 3) && foundSeat)
         {
-            //GameObject.Destroy(gameObject);
+            GameObject.Destroy(gameObject);
         }
     }
 

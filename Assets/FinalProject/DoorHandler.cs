@@ -44,7 +44,7 @@ public class DoorHandler : MonoBehaviour
                         other.gameObject.GetComponent<NavMeshAgent>().SetDestination(openSeats[k].transform.position);
                         print("New Destination for Party of " + partySize);
                     }
-                    break;
+                    return;
                 }
                 else
                 {
@@ -53,6 +53,8 @@ public class DoorHandler : MonoBehaviour
             }
 
             // TODO make the customers go somewhere else
+            print(partySize);
+            other.GetComponent<NavMeshAgent>().isStopped = true;
         }
     }
 }
