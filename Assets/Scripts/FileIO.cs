@@ -37,13 +37,15 @@ public class FileIO : MonoBehaviour
             return;
         }
 
-        StreamReader sr = File.OpenText(filename);
-        string line = sr.ReadLine();
+        StreamReader streamReader = File.OpenText(filename);
+        string line = streamReader.ReadLine();
 
         while(line != null)
         {
             Debug.Log(line);
-            line = sr.ReadLine();
+            line = streamReader.ReadLine();
         }
+
+        streamReader.Close();
     }
 }
