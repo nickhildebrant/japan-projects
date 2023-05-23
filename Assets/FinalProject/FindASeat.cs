@@ -68,4 +68,9 @@ public class FindASeat : MonoBehaviour
             
         }
     }
+
+    public bool CustomerEatingStatus()
+    {
+        return foundSeat;
+    }
 }

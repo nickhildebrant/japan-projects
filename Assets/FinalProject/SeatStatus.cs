@@ -6,6 +6,8 @@ public class SeatStatus : MonoBehaviour
 {
     public Material redMaterial, greenMaterial;
 
+    private bool isOpen = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class SeatStatus : MonoBehaviour
         if(other.tag == "Customer")
         {
             GetComponent<Renderer>().material = redMaterial;
+            isOpen = false;
         }
     }
 
@@ -35,11 +38,12 @@ public class SeatStatus : MonoBehaviour
         if (other.tag == "Customer")
         {
             GetComponent<Renderer>().material = greenMaterial;
+            isOpen = true;
         }
     }
 
     public bool IsOpen()
     {
-        return GetComponent<Renderer>().material == greenMaterial;
+        return isOpen;
     }
 }

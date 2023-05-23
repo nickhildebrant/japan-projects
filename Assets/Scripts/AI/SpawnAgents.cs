@@ -28,8 +28,8 @@ public class SpawnAgents : MonoBehaviour
         {
             timer = 0.0f;
 
-            var possibleSeats = GameObject.FindGameObjectsWithTag("Entrance");
-            int randomSeat = Random.Range(0, possibleSeats.Length);
+            var possibleRestaurants = GameObject.FindGameObjectsWithTag("Entrance");
+            int randomSeat = Random.Range(0, possibleRestaurants.Length);
             for (int i = 0; i < numberOfAgents; i++)
             {
                 GameObject newAgent = GameObject.Instantiate(agentPrefab, transform.position, Quaternion.identity);
@@ -37,7 +37,7 @@ public class SpawnAgents : MonoBehaviour
                 if (newAgent.GetComponent<FindASeat>())
                 {
                     newAgent.GetComponent<FindASeat>().partySize = numberOfAgents;
-                    newAgent.GetComponent<NavMeshAgent>().destination = possibleSeats[randomSeat].transform.position;
+                    newAgent.GetComponent<NavMeshAgent>().destination = possibleRestaurants[randomSeat].transform.position;
                     newAgent.GetComponent<NavMeshAgent>().speed = 5.0f;
                 }
 

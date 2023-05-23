@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -23,27 +24,32 @@ public class DoorHandler : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Customer")
+        if(other.tag == "Customer" && !other.gameObject.GetComponent<FindASeat>().CustomerEatingStatus())
         {
-            bool hasOpenSeats = false;
             int partySize = other.GetComponent<FindASeat>().partySize;
-            List<GameObject> openSeats = new List<GameObject>();
 
-            // Getting the open seats
             for(int i = 0; i < restaurantSeats.Length; i++)
             {
-                if (restaurantSeats[i].GetComponent<SeatStatus>().IsOpen()) openSeats.Add(restaurantSeats[i]);
-            }
+                List<GameObject> openSeats = new List<GameObject>();
 
-            if (partySize <= openSeats.Count)
-            {
-                for (int j = 0; j < openSeats.Count; j++)
+                for(int j = i; j < partySize; j++)
                 {
-                    if (other.GetComponent<NavMeshAgent>().destination == openSeats[j].transform.position)
-                    {
-                        hasOpenSeats = true;
-                    }
+                    if (restaurantSeats[i].GetComponent<SeatStatus>().IsOpen()) openSeats.Add(restaurantSeats[i]);
                 }
+
+                if(openSeats.Count >= partySize)
+                {
+                    for(int k = 0; k < openSeats.Count; k++)
+                    {
+                        other.gameObject.GetComponent<NavMeshAgent>().SetDestination(openSeats[k].transform.position);
+                        print("New Destination for Party of " + partySize);
+                    }
+                    break;
+                }
+                else
+                {
+                    openSeats.Clear();
+                }    
             }
 
             // TODO make the customers go somewhere else
