@@ -1,2 +1,2 @@
-Number of Agents who reached their goal 375
-Total time passed: 9.10
+Number of Agents who reached their goal 448
+Total time passed: 49.95

@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050dd336ebe9ad740b3687712bc1ea7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  canvas: {fileID: 967590466581034396}
   offset: {x: 0, y: 0, z: 0}
 --- !u!1 &3156389950252956235
 GameObject:
