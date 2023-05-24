@@ -32,17 +32,17 @@ public class DoorHandler : MonoBehaviour
             {
                 List<GameObject> openSeats = new List<GameObject>();
 
-                for(int j = i; j < partySize; j++)
+                for(int j = i; j < i + partySize; j++)
                 {
-                    if (restaurantSeats[i].GetComponent<SeatStatus>().IsOpen()) openSeats.Add(restaurantSeats[i]);
+                    if (restaurantSeats[j].GetComponent<SeatStatus>().IsOpen()) openSeats.Add(restaurantSeats[j]);
                 }
 
                 if(openSeats.Count >= partySize)
                 {
                     for(int k = 0; k < openSeats.Count; k++)
                     {
-                        other.gameObject.GetComponent<NavMeshAgent>().SetDestination(openSeats[k].transform.position);
-                        print("New Destination for Party of " + partySize);
+                        other.GetComponent<FindASeat>().friends[k].GetComponent<NavMeshAgent>().SetDestination(openSeats[k].transform.position);
+                        openSeats[k].GetComponent<SeatStatus>().OccupySeat();
                     }
                     return;
                 }
@@ -53,7 +53,6 @@ public class DoorHandler : MonoBehaviour
             }
 
             // TODO make the customers go somewhere else
-            print(partySize);
             other.GetComponent<NavMeshAgent>().isStopped = true;
         }
     }

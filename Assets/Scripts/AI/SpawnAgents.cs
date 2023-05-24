@@ -13,10 +13,12 @@ public class SpawnAgents : MonoBehaviour
 
     public GameObject DropOffLocation, DropOffPrefab;
 
+    private List<GameObject> listOfAgents;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        listOfAgents = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -46,7 +48,17 @@ public class SpawnAgents : MonoBehaviour
                     newAgent.GetComponent<CarMove>().DropOffPrefab = DropOffPrefab;
                     newAgent.GetComponent<CarMove>().DropOffLocation = DropOffLocation;
                 }
+
+                newAgent.GetComponent<FindASeat>().friends = new GameObject[numberOfAgents];
+                listOfAgents.Add(newAgent);
             }
+
+            foreach(var agent in listOfAgents)
+            {
+                agent.GetComponent<FindASeat>().friends = listOfAgents.ToArray();
+            }
+
+            listOfAgents.Clear();
         }
     }
 }

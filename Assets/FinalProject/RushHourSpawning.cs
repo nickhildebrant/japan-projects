@@ -5,7 +5,7 @@ using UnityEngine;
 public class RushHourSpawning : MonoBehaviour
 {
     public GameObject timeManager;
-    public const int peakDinnerTime = 60 * 6;
+    public const int peakDinnerTime = 60 * 7;
     public const int peakLunchTime = 60 * 11;
 
     // Start is called before the first frame update
@@ -20,8 +20,8 @@ public class RushHourSpawning : MonoBehaviour
         if (peakLunchTime - timeManager.GetComponent<DaylightCycle>().GetTime() <= 90 && peakLunchTime - timeManager.GetComponent<DaylightCycle>().GetTime() > 0)
         {
             print("Lunch Rush");
-            //GetComponent<SpawnAgents>().numberOfAgents = Random.Range(1, 3);
-            GetComponent<SpawnAgents>().numberOfAgents = 1;
+            GetComponent<SpawnAgents>().numberOfAgents = Random.Range(1, 3);
+            //GetComponent<SpawnAgents>().numberOfAgents = 1;
             GetComponent<SpawnAgents>().timeInterval = Random.Range(10, 15);
         }
 

@@ -46,4 +46,9 @@ public class SeatStatus : MonoBehaviour
     {
         return isOpen;
     }
+
+    public void OccupySeat()
+    {
+        isOpen = false;
+    }
 }

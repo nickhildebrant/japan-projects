@@ -21,6 +21,8 @@ public class FindASeat : MonoBehaviour
 
     private GameObject timerText;
 
+    public GameObject[] friends;
+
     // Start is called before the first frame update
     void Start()
     {
