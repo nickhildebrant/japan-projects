@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class FindASeat : MonoBehaviour
 {
     private NavMeshAgent agent;
     private GameObject dayNightManager;
 
-    private bool foundSeat = false;
+    public bool foundSeat = false;
 
     public float walkingSpeed = 5.0f;
     public int partySize = 1;
@@ -19,7 +20,7 @@ public class FindASeat : MonoBehaviour
     [SerializeField]
     private GameObject finalDestination;
 
-    private GameObject timerText;
+    public GameObject timerText;
 
     public GameObject[] friends;
 
@@ -35,6 +36,8 @@ public class FindASeat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timerText.GetComponent<Text>().enabled = false;
+
         if(foundSeat)
         {
             timer += Time.deltaTime;
@@ -71,8 +74,9 @@ public class FindASeat : MonoBehaviour
         }
     }
 
-    public bool CustomerEatingStatus()
+    public void ShowTimer()
     {
-        return foundSeat;
-    }
+        timerText.GetComponent<Text>().enabled = true;
+        timerText.GetComponent<Text>().text = timer.ToString("0");
+    }    
 }

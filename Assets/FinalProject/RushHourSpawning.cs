@@ -19,7 +19,6 @@ public class RushHourSpawning : MonoBehaviour
     {
         if (peakLunchTime - timeManager.GetComponent<DaylightCycle>().GetTime() <= 90 && peakLunchTime - timeManager.GetComponent<DaylightCycle>().GetTime() > 0)
         {
-            print("Lunch Rush");
             GetComponent<SpawnAgents>().numberOfAgents = Random.Range(1, 3);
             //GetComponent<SpawnAgents>().numberOfAgents = 1;
             GetComponent<SpawnAgents>().timeInterval = Random.Range(10, 15);
@@ -27,7 +26,6 @@ public class RushHourSpawning : MonoBehaviour
 
         if (peakDinnerTime - timeManager.GetComponent<DaylightCycle>().GetTime() <= 90 && peakDinnerTime - timeManager.GetComponent<DaylightCycle>().GetTime() > 0)
         {
-            print("Dinner Rush");
             GetComponent<SpawnAgents>().numberOfAgents = Random.Range(2, 6);
             GetComponent<SpawnAgents>().timeInterval = Random.Range(5, 10);
         }

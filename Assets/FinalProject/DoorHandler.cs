@@ -24,7 +24,7 @@ public class DoorHandler : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Customer" && !other.gameObject.GetComponent<FindASeat>().CustomerEatingStatus())
+        if(other.tag == "Customer" && !other.gameObject.GetComponent<FindASeat>().foundSeat)
         {
             int partySize = other.GetComponent<FindASeat>().partySize;
 
@@ -32,17 +32,19 @@ public class DoorHandler : MonoBehaviour
             {
                 List<GameObject> openSeats = new List<GameObject>();
 
-                for(int j = i; j < i + partySize; j++)
+                for(int j = i; j < i + partySize && j < restaurantSeats.Length; j++)
                 {
                     if (restaurantSeats[j].GetComponent<SeatStatus>().IsOpen()) openSeats.Add(restaurantSeats[j]);
                 }
-
+                
                 if(openSeats.Count >= partySize)
                 {
                     for(int k = 0; k < openSeats.Count; k++)
                     {
-                        other.GetComponent<FindASeat>().friends[k].GetComponent<NavMeshAgent>().SetDestination(openSeats[k].transform.position);
                         openSeats[k].GetComponent<SeatStatus>().OccupySeat();
+                        other.GetComponent<FindASeat>().friends[k].GetComponent<FindASeat>().foundSeat = true;
+                        other.GetComponent<FindASeat>().friends[k].GetComponent<NavMeshAgent>().SetDestination(openSeats[k].transform.position);
+                        other.GetComponent<FindASeat>().friends[k].GetComponent<NavMeshAgent>().isStopped = false;
                     }
                     return;
                 }

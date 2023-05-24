@@ -26,6 +26,7 @@ public class SeatStatus : MonoBehaviour
 
         if(other.tag == "Customer")
         {
+            other.GetComponent<FindASeat>().ShowTimer();
             GetComponent<Renderer>().material = redMaterial;
             isOpen = false;
         }
