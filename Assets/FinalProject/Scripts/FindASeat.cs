@@ -24,6 +24,9 @@ public class FindASeat : MonoBehaviour
 
     public GameObject[] friends;
 
+    public Material angryColor, happyColor;
+    public float frustrationTimer = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,17 +39,25 @@ public class FindASeat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timerText.GetComponent<Text>().enabled = false;
+        frustrationTimer += Time.deltaTime;
+
+        if(frustrationTimer >= 120)
+        {
+            agent.destination = finalDestination.transform.position;
+            GetComponentInChildren<Renderer>().material = angryColor;
+        }
 
         if(foundSeat)
         {
             timer += Time.deltaTime;
+            timerText.GetComponent<Text>().text = timer.ToString("0");
         }
 
         if(timer >= 30.0f)
         {
             agent.destination = finalDestination.transform.position;
             timer = 0;
+            timerText.GetComponent<Text>().text = "";
         }
 
         if (finalDestination && Vector3.Distance(finalDestination.transform.position, transform.position) <= (agent.radius * 3) && foundSeat)
@@ -70,7 +81,13 @@ public class FindASeat : MonoBehaviour
     {
         if(other.tag == "Seat")
         {
-            
+            GetComponentInChildren<Renderer>().material = happyColor;
+            timerText.GetComponent<Text>().enabled = false;
+        }
+
+        if(other.tag == "Entrance" && agent.isStopped)
+        {
+            agent.isStopped = false;
         }
     }
 

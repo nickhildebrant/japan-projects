@@ -181,7 +181,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 
 --- !u!114 &2119663386842296809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +287,8 @@ MonoBehaviour:
   finalDestination: {fileID: 0}
   timerText: {fileID: 1877668879807134530}
   friends: []
+  angryColor: {fileID: 2100000, guid: 8114ab57d4ccb114f9daf67d0feb7158, type: 2}
+  happyColor: {fileID: 2100000, guid: f12351cb7b5909b499e532fdc44fa10a, type: 2}
 --- !u!54 &129590062112478523
 Rigidbody:
   m_ObjectHideFlags: 0
