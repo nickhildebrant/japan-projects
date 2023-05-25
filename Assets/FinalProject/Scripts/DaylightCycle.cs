@@ -20,6 +20,17 @@ public class DaylightCycle : MonoBehaviour
     void Start()
     {
         textUI = GameObject.Find("TimeClock");
+
+        PlayerPrefs.SetInt("SatisfiedCustomers", 0);
+        PlayerPrefs.SetInt("TotalHappyTime", 0);
+        PlayerPrefs.SetInt("MinHappyTime", 0);
+        PlayerPrefs.SetInt("MaxHappyTime", 0);
+        PlayerPrefs.SetInt("MaxHappyTime", 0);
+        PlayerPrefs.SetInt("AngryCustomers", 0);
+        PlayerPrefs.SetInt("TotalAngryTime", 0);
+        PlayerPrefs.SetInt("MinAngryTime", 0);
+        PlayerPrefs.SetInt("MaxAngryTime", 0);
+        PlayerPrefs.SetInt("TotalCustomers", 0);
     }
 
     // Update is called once per frame

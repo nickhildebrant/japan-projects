@@ -43,6 +43,9 @@ public class FindASeat : MonoBehaviour
 
         if(frustrationTimer >= 120)
         {
+            foundSeat = true;
+            finalDestination = GameObject.FindGameObjectsWithTag("Finish")[Random.Range(0, GameObject.FindGameObjectsWithTag("Finish").Length)];
+            agent.isStopped = false;
             agent.destination = finalDestination.transform.position;
             GetComponentInChildren<Renderer>().material = angryColor;
         }
@@ -60,8 +63,40 @@ public class FindASeat : MonoBehaviour
             timerText.GetComponent<Text>().text = "";
         }
 
-        if (finalDestination && Vector3.Distance(finalDestination.transform.position, transform.position) <= (agent.radius * 3) && foundSeat)
+        if (finalDestination && Vector3.Distance(finalDestination.transform.position, transform.position) <= (agent.radius * 3) && foundSeat || GetComponentInChildren<Renderer>().material == angryColor)
         {
+            if(GetComponentInChildren<Renderer>().material == happyColor) 
+            {
+                int i = PlayerPrefs.GetInt("SatisfiedCustomers");
+                PlayerPrefs.SetInt("SatisfiedCustomers", ++i);
+
+                int j = PlayerPrefs.GetInt("TotalHappyTime");
+                PlayerPrefs.SetInt("TotalHappyTime", j + (int)frustrationTimer);
+
+                int min = PlayerPrefs.GetInt("MinHappyTime");
+                if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinHappyTime", (int)frustrationTimer);
+
+                int max = PlayerPrefs.GetInt("MaxHappyTime");
+                if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxHappyTime", (int)frustrationTimer);
+            }
+            else
+            {
+                int i = PlayerPrefs.GetInt("AngryCustomers");
+                PlayerPrefs.SetInt("AngryCustomers", ++i);
+
+                int j = PlayerPrefs.GetInt("TotalAngryTime");
+                PlayerPrefs.SetInt("TotalAngryTime", j + (int)frustrationTimer);
+
+                int min = PlayerPrefs.GetInt("MinAngryTime");
+                if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinAngryTime", (int)frustrationTimer);
+
+                int max = PlayerPrefs.GetInt("MaxAngryTime");
+                if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxAngryTime", (int)frustrationTimer);
+            }
+
+            int k = PlayerPrefs.GetInt("TotalCustomers");
+            PlayerPrefs.SetInt("TotalCustomers", ++k);
+
             GameObject.Destroy(gameObject);
         }
     }
@@ -85,7 +120,7 @@ public class FindASeat : MonoBehaviour
             timerText.GetComponent<Text>().enabled = false;
         }
 
-        if(other.tag == "Entrance" && agent.isStopped)
+        if (other.tag == "Entrance" && agent.isStopped)
         {
             agent.isStopped = false;
         }
