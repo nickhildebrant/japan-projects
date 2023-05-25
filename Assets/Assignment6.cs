@@ -17,13 +17,20 @@ public class Assignment6 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerPrefs.SetInt("NumAgents", 0);
+        Time.timeScale = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerPrefs.SetString("Time", Time.time.ToString("0.00"));
+    }
+
+    public void StartSim()
+    {
+        slider.GetComponent<Slider>().value = 1;
+        Time.timeScale = 1;
     }
 
     public void PauseGame()
