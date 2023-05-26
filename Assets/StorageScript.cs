@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,23 +14,11 @@ public class StorageScript : MonoBehaviour
     public int happyTimer = 0;
     public int angryTimer = 0;
 
-    public int minHappyTime = int.MaxValue;
-    public int minAngryTime = int.MaxValue;
+    public int minHappyTime = 0;
+    public int minAngryTime = 0;
 
-    public int maxHappyTime = int.MinValue;
-    public int maxAngryTime = int.MinValue;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int maxHappyTime = 0;
+    public int maxAngryTime = 0;
 
     public void UpdateHappy(int time)
     {
@@ -37,20 +26,20 @@ public class StorageScript : MonoBehaviour
 
         happyTimer += time;
 
-        if (minHappyTime > time) minHappyTime = time;
-
-        if (maxHappyTime < time) maxHappyTime = time;
+        minHappyTime = Mathf.Min(minHappyTime, time);
+        maxHappyTime = Mathf.Max(maxHappyTime, time);
     }
 
     public void UpdateAngry(int time)
     {
+        print(time);
+
         angryGuys++;
 
         angryTimer += time;
 
-        if (minAngryTime > time) minAngryTime = time;
-
-        if (maxAngryTime < time) maxAngryTime = time;
+        minAngryTime = Mathf.Min(minAngryTime, time);
+        maxAngryTime = Mathf.Max(maxAngryTime, time);
     }
 
     public void WriteToFile()
