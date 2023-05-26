@@ -99,9 +99,6 @@ public class FindASeat : MonoBehaviour
                 if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxAngryTime", (int)frustrationTimer);
             }
 
-            int k = PlayerPrefs.GetInt("TotalCustomers");
-            PlayerPrefs.SetInt("TotalCustomers", ++k);
-
             GameObject.Destroy(gameObject);
         }
     }
