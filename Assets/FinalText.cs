@@ -14,22 +14,25 @@ public class FinalText : MonoBehaviour
     void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
-
         text.text = "";
-        text.text += "Number of Happy Customers: " + PlayerPrefs.GetInt("SatisfiedCustomers");
-        text.text += "\nLowest time spent by a Happy Customer: " + PlayerPrefs.GetInt("MinHappyTime");
-        if (PlayerPrefs.GetInt("SatisfiedCustomers") > 0) text.text += "\nAverage Happy Time: " + (PlayerPrefs.GetInt("TotalHappyTime") / PlayerPrefs.GetInt("SatisfiedCustomers"));
-        else text.text += "\nAverage Happy Time: " + (PlayerPrefs.GetInt("TotalHappyTime") / 1);
 
-        text.text += "\n\nNumber of Angry Customers: " + PlayerPrefs.GetInt("AngryCustomers");
-        text.text += "\nHighest time spent by an Angry Customer: " + PlayerPrefs.GetInt("MaxAngryTime");
-        if (PlayerPrefs.GetInt("AngryCustomers") > 0) text.text += "\nAverage Angry Time: " + (PlayerPrefs.GetInt("TotalAngryTime") / PlayerPrefs.GetInt("AngryCustomers"));
-        else text.text += "\nAverage Angry Time: " + (PlayerPrefs.GetInt("TotalAngryTime") / 1);
+        string filename = Application.dataPath + "/output.txt";
 
-        text.text += "\nTry the Simulation again with different parameters!";
+        if (!File.Exists(filename))
+        {
+            Debug.Log("Could not Open the file: " + filename + " for reading.");
+            return;
+        }
 
-        StreamWriter streamWriter = File.CreateText(Application.dataPath + "/results.txt");
-        streamWriter.WriteLine(text.text);
-        streamWriter.Close();
+        StreamReader streamReader = File.OpenText(filename);
+        string line = streamReader.ReadLine();
+
+        while (line != null)
+        {
+            text.text += line;
+            line = streamReader.ReadLine();
+        }
+
+        streamReader.Close();
     }
 }
