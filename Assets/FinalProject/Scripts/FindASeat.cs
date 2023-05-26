@@ -28,20 +28,29 @@ public class FindASeat : MonoBehaviour
     public float frustrationTimer = 0.0f;
 
     private bool isleaving = false;
+    private bool isHappy = false;
+
+    private GameObject EatingSlider;
+
+    private GameObject Storage;
 
     // Start is called before the first frame update
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
+        agent.isStopped = false;
+
         dayNightManager = GameObject.Find("Directional Light");
 
         timerText.GetComponent<Text>().enabled = false;
 
-        agent = GetComponent<NavMeshAgent>();
-        agent.isStopped = false;
+        EatingSlider = GameObject.Find("Eating Slider");
+
+        Storage = GameObject.FindGameObjectWithTag("Storage");
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         frustrationTimer += Time.deltaTime;
 
@@ -54,6 +63,7 @@ public class FindASeat : MonoBehaviour
             GetComponentInChildren<Renderer>().material = angryColor;
 
             isleaving = true;
+            isHappy = false;
         }
 
         if(timerText.GetComponent<Text>().enabled)
@@ -62,12 +72,13 @@ public class FindASeat : MonoBehaviour
             timerText.GetComponent<Text>().text = timer.ToString("0");
         }
 
-        if(timer >= 30.0f)
+        if(timer >= EatingSlider.GetComponent<UnityEngine.UI.Slider>().value)
         {
             agent.destination = finalDestination.transform.position;
             timer = 0;
             timerText.GetComponent<Text>().text = "";
             isleaving = true;
+            isHappy = true;
         }
 
         if (finalDestination && Vector3.Distance(finalDestination.transform.position, transform.position) <= (agent.radius * 5)) GoingHome();
@@ -108,36 +119,8 @@ public class FindASeat : MonoBehaviour
     {
         if(foundSeat || GetComponentInChildren<Renderer>().material == angryColor)
         {
-            if (foundSeat)
-            {
-                int i = PlayerPrefs.GetInt("SatisfiedCustomers") + 1;
-                PlayerPrefs.SetInt("SatisfiedCustomers", i);
-
-                float j = PlayerPrefs.GetFloat("TotalHappyTime") + frustrationTimer;
-                PlayerPrefs.SetFloat("TotalHappyTime", j);
-
-                int min = PlayerPrefs.GetInt("MinHappyTime");
-                if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinHappyTime", (int)frustrationTimer);
-
-                //int max = PlayerPrefs.GetInt("MaxHappyTime");
-                //if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxHappyTime", (int)frustrationTimer);
-
-                GameObject.Destroy(gameObject);
-
-                return true;
-            }
-
-            int k = PlayerPrefs.GetInt("AngryCustomers") + 1;
-            PlayerPrefs.SetInt("AngryCustomers", k);
-
-            float p = PlayerPrefs.GetFloat("TotalAngryTime") + frustrationTimer;
-            PlayerPrefs.SetFloat("TotalAngryTime", p);
-
-            //int min = PlayerPrefs.GetInt("MinAngryTime");
-            //if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinAngryTime", (int)frustrationTimer);
-
-            int max = PlayerPrefs.GetInt("MaxAngryTime");
-            if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxAngryTime", (int)frustrationTimer);
+            if (isHappy) Storage.GetComponent<StorageScript>().UpdateHappy((int)frustrationTimer);
+            else Storage.GetComponent<StorageScript>().UpdateAngry((int)frustrationTimer);
 
             GameObject.Destroy(gameObject);
 

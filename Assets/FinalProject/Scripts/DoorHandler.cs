@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class DoorHandler : MonoBehaviour
 {
     public GameObject mainObject;
 
     private GameObject[] restaurantSeats;
+    private GameObject checkBox;
+
+    private GameObject[] possibleRestaurants;// = GameObject.FindGameObjectsWithTag("Entrance");
 
     // Start is called before the first frame update
     void Start()
     {
         restaurantSeats = mainObject.GetComponent<RestaurantManager>().seatsInRestaurant;
+        checkBox = GameObject.Find("Toggle");
+        possibleRestaurants = GameObject.FindGameObjectsWithTag("Entrance");
     }
 
     private void OnTriggerStay(Collider other)
@@ -49,7 +55,12 @@ public class DoorHandler : MonoBehaviour
             }
 
             // TODO make the customers go somewhere else
-            other.GetComponent<NavMeshAgent>().isStopped = true;
+            if(checkBox && checkBox.GetComponent<Toggle>().isOn)
+            {
+                int randomSeat = Random.Range(0, possibleRestaurants.Length);
+                other.gameObject.GetComponentInParent<NavMeshAgent>().destination = possibleRestaurants[randomSeat].transform.position;
+            }
+            else other.GetComponent<NavMeshAgent>().isStopped = true;
         }
     }
 }

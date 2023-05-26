@@ -21,6 +21,8 @@ public class DaylightCycle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
+
         textUI = GameObject.Find("TimeClock");
 
         PlayerPrefs.DeleteAll();
@@ -36,7 +38,7 @@ public class DaylightCycle : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Time.timeScale = (int)simulationSlider.value;
 

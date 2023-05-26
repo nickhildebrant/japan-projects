@@ -16,6 +16,7 @@ TagManager:
   - Seat
   - Crosswalk
   - Entrance
+  - Storage
   layers:
   - Default
   - TransparentFX

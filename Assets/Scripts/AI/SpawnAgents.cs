@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class SpawnAgents : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class SpawnAgents : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         timer += Time.deltaTime;
 
