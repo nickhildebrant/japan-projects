@@ -68,39 +68,7 @@ public class FindASeat : MonoBehaviour
             isleaving = true;
         }
 
-        if (finalDestination && Vector3.Distance(finalDestination.transform.position, transform.position) <= (agent.radius * 3) && foundSeat || GetComponentInChildren<Renderer>().material == angryColor)
-        {
-            if(GetComponentInChildren<Renderer>().material == happyColor) 
-            {
-                int i = PlayerPrefs.GetInt("SatisfiedCustomers");
-                PlayerPrefs.SetInt("SatisfiedCustomers", ++i);
-
-                int j = PlayerPrefs.GetInt("TotalHappyTime");
-                PlayerPrefs.SetInt("TotalHappyTime", j + (int)frustrationTimer);
-
-                int min = PlayerPrefs.GetInt("MinHappyTime");
-                if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinHappyTime", (int)frustrationTimer);
-
-                int max = PlayerPrefs.GetInt("MaxHappyTime");
-                if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxHappyTime", (int)frustrationTimer);
-            }
-            else
-            {
-                int i = PlayerPrefs.GetInt("AngryCustomers");
-                PlayerPrefs.SetInt("AngryCustomers", ++i);
-
-                int j = PlayerPrefs.GetInt("TotalAngryTime");
-                PlayerPrefs.SetInt("TotalAngryTime", j + (int)frustrationTimer);
-
-                int min = PlayerPrefs.GetInt("MinAngryTime");
-                if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinAngryTime", (int)frustrationTimer);
-
-                int max = PlayerPrefs.GetInt("MaxAngryTime");
-                if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxAngryTime", (int)frustrationTimer);
-            }
-
-            GameObject.Destroy(gameObject);
-        }
+        if (finalDestination && Vector3.Distance(finalDestination.transform.position, transform.position) <= (agent.radius * 3)) GoingHome();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -132,5 +100,46 @@ public class FindASeat : MonoBehaviour
     {
         timerText.GetComponent<Text>().enabled = true;
         timerText.GetComponent<Text>().text = timer.ToString("0");
-    }    
+    }
+    
+    public bool GoingHome()
+    {
+        if(foundSeat || GetComponentInChildren<Renderer>().material == angryColor)
+        {
+            if (GetComponentInChildren<Renderer>().material == happyColor)
+            {
+                int i = PlayerPrefs.GetInt("SatisfiedCustomers");
+                PlayerPrefs.SetInt("SatisfiedCustomers", ++i);
+
+                int j = PlayerPrefs.GetInt("TotalHappyTime");
+                PlayerPrefs.SetInt("TotalHappyTime", j + (int)frustrationTimer);
+
+                int min = PlayerPrefs.GetInt("MinHappyTime");
+                if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinHappyTime", (int)frustrationTimer);
+
+                int max = PlayerPrefs.GetInt("MaxHappyTime");
+                if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxHappyTime", (int)frustrationTimer);
+            }
+            else
+            {
+                int i = PlayerPrefs.GetInt("AngryCustomers");
+                PlayerPrefs.SetInt("AngryCustomers", ++i);
+
+                int j = PlayerPrefs.GetInt("TotalAngryTime");
+                PlayerPrefs.SetInt("TotalAngryTime", j + (int)frustrationTimer);
+
+                int min = PlayerPrefs.GetInt("MinAngryTime");
+                if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinAngryTime", (int)frustrationTimer);
+
+                int max = PlayerPrefs.GetInt("MaxAngryTime");
+                if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxAngryTime", (int)frustrationTimer);
+            }
+
+            GameObject.Destroy(gameObject);
+
+            return true;
+        }
+
+        return false;
+    }
 }

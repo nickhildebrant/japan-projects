@@ -61721,7 +61721,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708827676}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -73787,6 +73787,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 915141811}
     m_Modifications:
+    - target: {fileID: 855170045288783243, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
+      propertyPath: m_Size.x
+      value: 3.8629096
+      objectReference: {fileID: 0}
+    - target: {fileID: 855170045288783243, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
+      propertyPath: m_Size.z
+      value: 11.593997
+      objectReference: {fileID: 0}
+    - target: {fileID: 855170045288783243, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
+      propertyPath: m_Center.x
+      value: 1.5886005
+      objectReference: {fileID: 0}
+    - target: {fileID: 855170045288783243, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
+      propertyPath: m_Center.y
+      value: 1.1478732
+      objectReference: {fileID: 0}
+    - target: {fileID: 855170045288783243, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
+      propertyPath: m_Center.z
+      value: 3.4087007
+      objectReference: {fileID: 0}
     - target: {fileID: 1732883221058242538, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0000032042065
@@ -73826,6 +73846,14 @@ PrefabInstance:
     - target: {fileID: 4054232010491932960, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
       propertyPath: m_Name
       value: Taxi
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054232010491932973, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
+      propertyPath: m_Extents.x
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054232010491932973, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
+      propertyPath: m_Extents.z
+      value: 3.675
       objectReference: {fileID: 0}
     - target: {fileID: 4054232010491932974, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
       propertyPath: m_RootOrder
@@ -73889,7 +73917,7 @@ PrefabInstance:
       objectReference: {fileID: 1176620011}
     - target: {fileID: 4054232012205138172, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
       propertyPath: m_VersionIndex
-      value: 647
+      value: 650
       objectReference: {fileID: 0}
     - target: {fileID: 4054232012205138174, guid: 205a9180263c67c4bb51c6f104981efc, type: 3}
       propertyPath: m_Mesh

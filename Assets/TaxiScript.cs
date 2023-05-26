@@ -9,6 +9,8 @@ public class TaxiScript : MonoBehaviour
     public float carSpeed = 5.0f;
     private float tempSpeed = 5.0f;
 
+    private int holdingPassengers = 0;
+
     public GameObject leftLight, rightLight;
     public GameObject directionalLight;
 
@@ -43,11 +45,21 @@ public class TaxiScript : MonoBehaviour
         {
             tempSpeed = carSpeed;
             carSpeed = 0;
+
+            if(holdingPassengers < 5)
+            {
+                if(other.gameObject.GetComponentInParent<FindASeat>().GoingHome())
+                {
+                    holdingPassengers++;
+                }
+            }
         }
 
         if(other.name == "TaxiDestination")
         {
             transform.position = origin.transform.position;
+            print("Dropped off " + holdingPassengers + " passengers.");
+            holdingPassengers = 0;
         }
     }
 
