@@ -34,6 +34,8 @@ public class FindASeat : MonoBehaviour
     {
         dayNightManager = GameObject.Find("Directional Light");
 
+        timerText.GetComponent<Text>().enabled = false;
+
         agent = GetComponent<NavMeshAgent>();
         agent.isStopped = false;
     }
@@ -54,7 +56,7 @@ public class FindASeat : MonoBehaviour
             isleaving = true;
         }
 
-        if(foundSeat)
+        if(timerText.GetComponent<Text>().enabled)
         {
             timer += Time.deltaTime;
             timerText.GetComponent<Text>().text = timer.ToString("0");

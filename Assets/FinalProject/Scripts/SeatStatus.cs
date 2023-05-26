@@ -39,6 +39,7 @@ public class SeatStatus : MonoBehaviour
         if (other.tag == "Customer")
         {
             GetComponent<Renderer>().material = greenMaterial;
+            other.gameObject.GetComponentInParent<FindASeat>().ShowTimer();
             isOpen = true;
         }
     }
