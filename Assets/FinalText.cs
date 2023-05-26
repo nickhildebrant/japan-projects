@@ -16,7 +16,7 @@ public class FinalText : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
         text.text = "";
 
-        string filename = Application.dataPath + "/output.txt";
+        string filename = Application.dataPath + "/results.txt";
 
         if (!File.Exists(filename))
         {
@@ -29,7 +29,8 @@ public class FinalText : MonoBehaviour
 
         while (line != null)
         {
-            text.text += line;
+            print(line);
+            text.text += line + "\n";
             line = streamReader.ReadLine();
         }
 
