@@ -27,19 +27,22 @@ public class StorageScript : MonoBehaviour
         happyTimer += time;
 
         minHappyTime = Mathf.Min(minHappyTime, time);
-        maxHappyTime = Mathf.Max(maxHappyTime, time);
+
+        if (maxHappyTime > 2147483640) maxHappyTime = time;
+        else Mathf.Max(maxHappyTime, time);
     }
 
     public void UpdateAngry(int time)
     {
-        print(time);
-
         angryGuys++;
 
         angryTimer += time;
 
+        if (maxAngryTime > 2147483640) maxAngryTime = time;
+        else Mathf.Max(maxAngryTime, time);
+
         minAngryTime = Mathf.Min(minAngryTime, time);
-        maxAngryTime = Mathf.Max(maxAngryTime, time);
+        //maxAngryTime = Mathf.Max(maxAngryTime, time);
     }
 
     public void WriteToFile()
@@ -51,7 +54,7 @@ public class StorageScript : MonoBehaviour
         text += "\nNumber of Happy Customers: " + happyGuys;
         text += "\nLowest time spent by a Happy Customer: " + minHappyTime;
         text += "\nHighest time spent by a Happy Customer: " + maxHappyTime;
-        if (happyGuys > 0) text += "\nAverage Happy Time: " + happyTimer / happyGuys;
+        if (happyGuys > 0) text += "\nAverage Happy Time: " + (happyTimer / happyGuys);
         else text += "\nAverage Happy Time: " + (happyTimer / 1);
 
         text += "\n\nNumber of Angry Customers: " + angryGuys;

@@ -1,0 +1,11 @@
+Results for Sim when Customers stay in line.
+Number of Happy Customers: 114
+Lowest time spent by a Happy Customer: 83
+Highest time spent by a Happy Customer: 83
+Average Happy Time: 117
+
+Number of Angry Customers: 9
+Lowest time spent by an Angry Customer: 135
+Highest time spent by an Angry Customer: 158
+Average Angry Time: 144
+Try the Simulation again with different parameters!
