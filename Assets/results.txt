@@ -1,6 +1,6 @@
-Number of Happy Customers: 253
-Lowest time spent by a Happy Customer: 71
-Average Happy Time: 206
+Number of Happy Customers: 14
+Lowest time spent by a Happy Customer: 67
+Average Happy Time: 0
 
 Number of Angry Customers: 0
 Highest time spent by an Angry Customer: -2147483648

@@ -41,7 +41,7 @@ public class FindASeat : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         frustrationTimer += Time.deltaTime;
 
@@ -110,32 +110,34 @@ public class FindASeat : MonoBehaviour
         {
             if (foundSeat)
             {
-                int i = PlayerPrefs.GetInt("SatisfiedCustomers");
-                PlayerPrefs.SetInt("SatisfiedCustomers", ++i);
+                int i = PlayerPrefs.GetInt("SatisfiedCustomers") + 1;
+                PlayerPrefs.SetInt("SatisfiedCustomers", i);
 
-                int j = PlayerPrefs.GetInt("TotalHappyTime");
-                PlayerPrefs.SetInt("TotalHappyTime", j + (int)frustrationTimer);
+                float j = PlayerPrefs.GetFloat("TotalHappyTime") + frustrationTimer;
+                PlayerPrefs.SetFloat("TotalHappyTime", j);
 
                 int min = PlayerPrefs.GetInt("MinHappyTime");
                 if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinHappyTime", (int)frustrationTimer);
 
                 //int max = PlayerPrefs.GetInt("MaxHappyTime");
                 //if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxHappyTime", (int)frustrationTimer);
+
+                GameObject.Destroy(gameObject);
+
+                return true;
             }
-            else
-            {
-                int i = PlayerPrefs.GetInt("AngryCustomers");
-                PlayerPrefs.SetInt("AngryCustomers", ++i);
 
-                int j = PlayerPrefs.GetInt("TotalAngryTime");
-                PlayerPrefs.SetInt("TotalAngryTime", j + (int)frustrationTimer);
+            int k = PlayerPrefs.GetInt("AngryCustomers") + 1;
+            PlayerPrefs.SetInt("AngryCustomers", k);
 
-                //int min = PlayerPrefs.GetInt("MinAngryTime");
-                //if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinAngryTime", (int)frustrationTimer);
+            float p = PlayerPrefs.GetFloat("TotalAngryTime") + frustrationTimer;
+            PlayerPrefs.SetFloat("TotalAngryTime", p);
 
-                int max = PlayerPrefs.GetInt("MaxAngryTime");
-                if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxAngryTime", (int)frustrationTimer);
-            }
+            //int min = PlayerPrefs.GetInt("MinAngryTime");
+            //if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinAngryTime", (int)frustrationTimer);
+
+            int max = PlayerPrefs.GetInt("MaxAngryTime");
+            if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxAngryTime", (int)frustrationTimer);
 
             GameObject.Destroy(gameObject);
 

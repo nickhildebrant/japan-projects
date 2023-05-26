@@ -25,7 +25,7 @@ public class SpawnAgents : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         timer += Time.deltaTime;
 
@@ -36,13 +36,13 @@ public class SpawnAgents : MonoBehaviour
             int randomSeat = Random.Range(0, possibleRestaurants.Length);
             for (int i = 0; i < numberOfAgents; i++)
             {
-                GameObject newAgent = GameObject.Instantiate(agentPrefab, transform.position + new Vector3(Random.Range(0f, 3f), Random.Range(0f, 1f), Random.Range(0f, 3f)), Quaternion.identity);
+                GameObject newAgent = GameObject.Instantiate(agentPrefab, transform.position + new Vector3(Random.Range(0f, 3f), Random.Range(0f, 1f), Random.Range(0f, 3f)), Quaternion.EulerRotation(0, Random.Range(0f, 5f), 0));
                 if(tag != "Finish") newAgent.tag = tag;
                 if (newAgent.GetComponent<FindASeat>())
                 {
-                    newAgent.GetComponent<FindASeat>().partySize = numberOfAgents;
                     newAgent.GetComponent<NavMeshAgent>().destination = possibleRestaurants[randomSeat].transform.position;
                     newAgent.GetComponent<NavMeshAgent>().speed = 5.0f;
+                    newAgent.GetComponent<FindASeat>().partySize = numberOfAgents;
                 }
 
                 if(DropOffLocation && DropOffPrefab)
@@ -55,7 +55,7 @@ public class SpawnAgents : MonoBehaviour
                 listOfAgents.Add(newAgent);
             }
 
-            foreach(var agent in listOfAgents)
+            foreach(GameObject agent in listOfAgents)
             {
                 agent.GetComponent<FindASeat>().friends = listOfAgents.ToArray();
             }

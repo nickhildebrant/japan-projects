@@ -23,7 +23,7 @@ public class TaxiScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.position += transform.forward * carSpeed * Time.deltaTime;
 

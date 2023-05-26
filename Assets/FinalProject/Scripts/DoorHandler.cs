@@ -16,12 +16,6 @@ public class DoorHandler : MonoBehaviour
         restaurantSeats = mainObject.GetComponent<RestaurantManager>().seatsInRestaurant;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if(other.tag == "Customer" && !other.gameObject.GetComponent<FindASeat>().foundSeat)
