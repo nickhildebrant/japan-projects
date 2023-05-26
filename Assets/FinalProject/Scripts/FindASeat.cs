@@ -27,6 +27,8 @@ public class FindASeat : MonoBehaviour
     public Material angryColor, happyColor;
     public float frustrationTimer = 0.0f;
 
+    private bool isleaving = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,13 +43,15 @@ public class FindASeat : MonoBehaviour
     {
         frustrationTimer += Time.deltaTime;
 
-        if(frustrationTimer >= 120)
+        if(frustrationTimer >= 120 && !isleaving)
         {
             foundSeat = true;
             finalDestination = GameObject.FindGameObjectsWithTag("Finish")[Random.Range(0, GameObject.FindGameObjectsWithTag("Finish").Length)];
             agent.isStopped = false;
             agent.destination = finalDestination.transform.position;
             GetComponentInChildren<Renderer>().material = angryColor;
+
+            isleaving = true;
         }
 
         if(foundSeat)
@@ -61,6 +65,7 @@ public class FindASeat : MonoBehaviour
             agent.destination = finalDestination.transform.position;
             timer = 0;
             timerText.GetComponent<Text>().text = "";
+            isleaving = true;
         }
 
         if (finalDestination && Vector3.Distance(finalDestination.transform.position, transform.position) <= (agent.radius * 3) && foundSeat || GetComponentInChildren<Renderer>().material == angryColor)
