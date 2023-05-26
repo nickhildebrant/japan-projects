@@ -33,11 +33,11 @@ public class CarAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        agent.isStopped = other.GetComponent<TrafficLight>().GetLightColor();
+        if(other.GetComponent<TrafficLight>()) agent.isStopped = other.GetComponent<TrafficLight>().GetLightColor();
     }
 
     private void OnTriggerStay(Collider other)
     {
-        agent.isStopped = other.GetComponent<TrafficLight>().GetLightColor();
+        if(other.GetComponent<TrafficLight>()) agent.isStopped = other.GetComponent<TrafficLight>().GetLightColor();
     }
 }

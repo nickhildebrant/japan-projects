@@ -20,7 +20,7 @@ public class SpawnCars : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > Random.Range(3, 5))
+        if (timer > Random.Range(25, 45))
         {
             timer = 0.0f;
             GameObject newCar = GameObject.Instantiate(carPrefab, transform.position, Quaternion.identity);
