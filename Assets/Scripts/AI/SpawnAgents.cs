@@ -15,10 +15,13 @@ public class SpawnAgents : MonoBehaviour
 
     private List<GameObject> listOfAgents;
 
+    private GameObject[] possibleRestaurants;// = GameObject.FindGameObjectsWithTag("Entrance");
+
     // Start is called before the first frame update
     void Start()
     {
         listOfAgents = new List<GameObject>();
+        possibleRestaurants = GameObject.FindGameObjectsWithTag("Entrance");
     }
 
     // Update is called once per frame
@@ -30,11 +33,10 @@ public class SpawnAgents : MonoBehaviour
         {
             timer = 0.0f;
 
-            var possibleRestaurants = GameObject.FindGameObjectsWithTag("Entrance");
             int randomSeat = Random.Range(0, possibleRestaurants.Length);
             for (int i = 0; i < numberOfAgents; i++)
             {
-                GameObject newAgent = GameObject.Instantiate(agentPrefab, transform.position, Quaternion.identity);
+                GameObject newAgent = GameObject.Instantiate(agentPrefab, transform.position + new Vector3(Random.Range(0f, 3f), Random.Range(0f, 1f), Random.Range(0f, 3f)), Quaternion.identity);
                 if(tag != "Finish") newAgent.tag = tag;
                 if (newAgent.GetComponent<FindASeat>())
                 {

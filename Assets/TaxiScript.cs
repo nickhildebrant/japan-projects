@@ -59,7 +59,7 @@ public class TaxiScript : MonoBehaviour
         if(other.name == "TaxiDestination")
         {
             transform.position = origin.transform.position;
-            print("Dropped off " + holdingPassengers + " passengers.");
+            //print("Dropped off " + holdingPassengers + " passengers.");
             holdingPassengers = 0;
         }
     }

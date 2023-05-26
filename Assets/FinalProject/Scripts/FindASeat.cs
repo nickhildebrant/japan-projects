@@ -70,7 +70,7 @@ public class FindASeat : MonoBehaviour
             isleaving = true;
         }
 
-        if (finalDestination && Vector3.Distance(finalDestination.transform.position, transform.position) <= (agent.radius * 3)) GoingHome();
+        if (finalDestination && Vector3.Distance(finalDestination.transform.position, transform.position) <= (agent.radius * 5)) GoingHome();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -108,7 +108,7 @@ public class FindASeat : MonoBehaviour
     {
         if(foundSeat || GetComponentInChildren<Renderer>().material == angryColor)
         {
-            if (GetComponentInChildren<Renderer>().material == happyColor)
+            if (foundSeat)
             {
                 int i = PlayerPrefs.GetInt("SatisfiedCustomers");
                 PlayerPrefs.SetInt("SatisfiedCustomers", ++i);
@@ -119,8 +119,8 @@ public class FindASeat : MonoBehaviour
                 int min = PlayerPrefs.GetInt("MinHappyTime");
                 if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinHappyTime", (int)frustrationTimer);
 
-                int max = PlayerPrefs.GetInt("MaxHappyTime");
-                if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxHappyTime", (int)frustrationTimer);
+                //int max = PlayerPrefs.GetInt("MaxHappyTime");
+                //if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxHappyTime", (int)frustrationTimer);
             }
             else
             {
@@ -130,8 +130,8 @@ public class FindASeat : MonoBehaviour
                 int j = PlayerPrefs.GetInt("TotalAngryTime");
                 PlayerPrefs.SetInt("TotalAngryTime", j + (int)frustrationTimer);
 
-                int min = PlayerPrefs.GetInt("MinAngryTime");
-                if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinAngryTime", (int)frustrationTimer);
+                //int min = PlayerPrefs.GetInt("MinAngryTime");
+                //if (min > (int)frustrationTimer) PlayerPrefs.SetInt("MinAngryTime", (int)frustrationTimer);
 
                 int max = PlayerPrefs.GetInt("MaxAngryTime");
                 if (max < (int)frustrationTimer) PlayerPrefs.SetInt("MaxAngryTime", (int)frustrationTimer);
