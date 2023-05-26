@@ -43,8 +43,15 @@ public class DaylightCycle : MonoBehaviour
         timer += Time.deltaTime * 4;
         seconds = (int)timer % 60;
         minutes = (int)timer / 60 % 12 + 12;
+        if (timer >= (60 * 7) && timer < (60 * 19)) isNight = true;
+        else isNight = false;
         minutes = minutes > 12 ? minutes - 12 : minutes;
-        if (minutes == 7 && seconds == 0 && isNight) isNight = !isNight;
+
+        if(timer >= 2400)
+        {
+            timer -= 2400;
+        }
+
 
         transform.Rotate(new Vector3(Time.deltaTime, 0, 0));
 

@@ -32,7 +32,8 @@ public class TaxiScript : MonoBehaviour
             leftLight.GetComponent<Light>().enabled = true;
             rightLight.GetComponent<Light>().enabled = true;
         }
-        else
+
+        if (!directionalLight.GetComponent<DaylightCycle>().IsNight())
         {
             leftLight.GetComponent<Light>().enabled = false;
             rightLight.GetComponent<Light>().enabled = false;
